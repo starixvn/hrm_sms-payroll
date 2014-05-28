@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17D84703-756C-49A0-961A-9A2CFAF08707}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Payroll_System</RootNamespace>
+    <AssemblyName>Payroll_System</AssemblyName>
+    <ApplicationIcon>currency-icon.ico</ApplicationIcon>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/Payroll_System/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IBCCrypt, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Interop.Excel, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\AP範例\Excel Sample\LIB\Interop.Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InputBox.cs" />
+    <Compile Include="KeyAmount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyAmount.Designer.cs">
+      <DependentUpon>KeyAmount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CS\baseExport2Excel.cs" />
+    <Compile Include="Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company.Designer.cs">
+      <DependentUpon>Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CS\CompactAccess.cs" />
+    <Compile Include="Currency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Currency.Designer.cs">
+      <DependentUpon>Currency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CS\DBbase.cs" />
+    <Compile Include="CS\DosCommand.cs" />
+    <Compile Include="CS\Employee_Excel.cs" />
+    <Compile Include="CS\Excel_Banking.cs" />
+    <Compile Include="CS\Excel_Expenses.cs" />
+    <Compile Include="ExRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExRate.Designer.cs">
+      <DependentUpon>ExRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="First.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="First.Designer.cs">
+      <DependentUpon>First.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KeyChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyChange.Designer.cs">
+      <DependentUpon>KeyChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginAccount.Designer.cs">
+      <DependentUpon>LoginAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CS\Mail.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonthLock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonthLock.Designer.cs">
+      <DependentUpon>MonthLock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment.Designer.cs">
+      <DependentUpon>Payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentReocrd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentReocrd.designer.cs">
+      <DependentUpon>PaymentReocrd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PayRelationShip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PayRelationShip.Designer.cs">
+      <DependentUpon>PayRelationShip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PayslipMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PayslipMail.Designer.cs">
+      <DependentUpon>PayslipMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CS\posRange.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="KeyAmount.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>KeyAmount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Currency.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Currency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExRate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="First.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyChange.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>KeyChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginAccount.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LoginAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthLock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MonthLock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentReocrd.resx">
+      <DependentUpon>PaymentReocrd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayRelationShip.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PayRelationShip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PayslipMail.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PayslipMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee.resx">
+      <DependentUpon>Employee.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report_Expenses.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Report_Expenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report_Banking.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Report_Banking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report_List.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Report_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report_Summary.resx">
+      <DependentUpon>Report_Summary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyEmp.resx">
+      <DependentUpon>KeyEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tip_delbankaccount.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>tip_delbankaccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="bin\Debug\doc\Eric.doc" />
+    <None Include="bin\Debug\doc\How to Install Payroll Database Step by Step.doc" />
+    <None Include="bin\Debug\doc\intrduction.ppt" />
+    <None Include="bin\Debug\ExcelTemplate\BankingTemplate.xls" />
+    <None Include="bin\Debug\ExcelTemplate\ExpensesReport.xls" />
+    <None Include="bin\Debug\ExcelTemplate\ImportEmployee.xls" />
+    <None Include="bin\Debug\ExcelTemplate\SummaryTemplate.xls" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Report_Expenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_Expenses.Designer.cs">
+      <DependentUpon>Report_Expenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report_Banking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_Banking.Designer.cs">
+      <DependentUpon>Report_Banking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_List.Designer.cs">
+      <DependentUpon>Report_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report_Summary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_Summary.designer.cs">
+      <DependentUpon>Report_Summary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CS\TSQL.cs" />
+    <Compile Include="Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employee.Designer.cs">
+      <DependentUpon>Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CS\Excel_Summary.cs" />
+    <Compile Include="KeyEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyEmp.Designer.cs">
+      <DependentUpon>KeyEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tip_delbankaccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tip_delbankaccount.Designer.cs">
+      <DependentUpon>tip_delbankaccount.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Backup\20100610.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\DB\Payroll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\HtmlTemplate\PayslipMail.html" />
+    <Content Include="bin\Debug\IBCCrypt.dll" />
+    <Content Include="bin\Debug\Interop.Excel.dll" />
+    <Content Include="bin\Debug\Interop.Office.dll" />
+    <Content Include="bin\Debug\Interop.VBIDE.dll" />
+    <Content Include="currency-icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="currency-icon.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Manager.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Payroll_System.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

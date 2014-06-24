@@ -1518,8 +1518,8 @@ namespace Payroll_System
                     ((Currency == currency) 
                     ? 
                     1 
-                    : 
-                    (1 / double.Parse("0" + CurrencyRate[currency])))
+                    :
+                   (1 / double.Parse("0" + CurrencyRate[currency]) * double.Parse("0" + CurrencyRate[Currency])))
                         * varianceBase);
                 row.Cells[i].Value = variance;
             }

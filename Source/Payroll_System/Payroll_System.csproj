@@ -40,6 +40,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,6 +73,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Community.CsharpSqlite.SQLiteClient.dll</HintPath>
     </Reference>
+    <Reference Include="GemBox.Document, Version=23.3.30.1104, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL" />
     <Reference Include="IBCCrypt, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\IBCCrypt.dll</HintPath>
@@ -81,6 +83,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>_Dependencies\Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="NReco.PdfGenerator, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -364,6 +367,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="money bag.ico" />
+    <Content Include="Resources\pdf24x24.png" />
+    <Content Include="_Dependencies\NReco.PdfGenerator.dll" />
     <None Include="Resources\unlock.png" />
     <None Include="Resources\multiple.png" />
     <Content Include="_Dependencies\Community.CsharpSqlite.dll" />

@@ -186,13 +186,14 @@ namespace Payroll_System
             }
         }
 
-        private void SendAll(bool isTester)
+        private void SendMailOrExportPDF(bool isTester, bool isExportPDF, string folderPath, bool isAttachFile)
         {
             Mail _Mail;
             string doc;
             string personal;
             string groupID = string.Empty;
             string employeeName = string.Empty;
+            string nickName = string.Empty;
             string payoutMethod = string.Empty;
             int count;
             int i;
@@ -240,9 +241,11 @@ namespace Payroll_System
             string Net_Salary;
 
             string Amount;
-
+            labCount.Text = string.Empty;
             Dictionary<string, string> txtLog = new Dictionary<string, string>();
             textLog.Text = string.Empty;
+            string month = this.thisMonthy.Substring(4, 2) + this.thisMonthy.Substring(0, 4); 
+
             try
             {
                 doc = base.getFileTxt(htmlFile);
@@ -266,12 +269,15 @@ namespace Payroll_System
                 {
                     groupID = FormatGroupID(data.Rows[i]["GrpID"]);
                     employeeName = base.obj2str(data.Rows[i]["eName"]);
+                    nickName = base.obj2str(data.Rows[i]["CallName"]);
+                    workMail = base.obj2str(data.Rows[i]["EmailWork"]);
+
                     personal = doc;
                     personal = personal.Replace("{{FullDate}}", fulldate);
                     personal = personal.Replace("{{FullName}}", base.obj2str(data.Rows[i]["eName"]));
-                    personal = personal.Replace("{{Nick}}", base.obj2str(data.Rows[i]["CallName"]));
+                    personal = personal.Replace("{{Nick}}", nickName);
                     personal = personal.Replace("{{GroupID}}", groupID);
-                    workMail = base.obj2str(data.Rows[i]["EmailWork"]);
+
                     personal = personal.Replace("{{Email}}", workMail);
                     personal = personal.Replace("{{Dept}}", base.obj2str(data.Rows[i]["DepartmentID"]));
                     personal = personal.Replace("{{JobTitle}}", base.obj2str(data.Rows[i]["PositionName"]));
@@ -330,35 +336,55 @@ namespace Payroll_System
                     personal = personal.Replace("<!--{{ExchangeRateList}}-->", exchangeRate);
                     personal = personal.Replace("{{FullDateTime}}", fulldatetime);
 
-                    _Mail = new Mail();
-                    if (txtUserName.Text.Trim() != string.Empty)
+                    var fileName = string.Empty;
+                    if (isExportPDF)
                     {
-                        _Mail.UserName = txtUserName.Text.Trim();
-                        _Mail.Password = txtPassword.Text.Trim();
-                    }
-
-                    string subject = txtSubject.Text.Trim();
-                    subject = subject.Replace("{{FullDate}}", fulldate);
-                    subject = subject.Replace("{{Nick}}", base.obj2str(data.Rows[i]["CallName"]));
-
-                    _Mail.Subject = subject;
-                    _Mail.Body = personal;
-                    _Mail.From = txtSender.Text;
-                    _Mail.Host = txtMailServer.Text;
-
-                    if (!isTester)
-                    {
-                        _Mail.MailOne = workMail;
+                        var pdfBytes = (new NReco.PdfGenerator.HtmlToPdfConverter()).GeneratePdf(personal);
+                        fileName = folderPath + "\\" + nickName + "_" + month + ".pdf";
+                        File.WriteAllBytes(@fileName, pdfBytes);
+                        txtLog[groupID] = employeeName + " exported.";
                     }
                     else
                     {
-                        _Mail.MailOne = txtTestAddr.Text.Trim();
+                        _Mail = new Mail();
+
+                        if (isAttachFile)
+                        {
+                            var pdfBytes = (new NReco.PdfGenerator.HtmlToPdfConverter()).GeneratePdf(personal);
+                            fileName = folderPath + "\\" + nickName + "_" + month + ".pdf";
+                            File.WriteAllBytes(@fileName, pdfBytes);
+                            _Mail.AddAttachmentFile(@fileName);
+                        }
+
+                        if (txtUserName.Text.Trim() != string.Empty)
+                        {
+                            _Mail.UserName = txtUserName.Text.Trim();
+                            _Mail.Password = txtPassword.Text.Trim();
+                        }
+
+                        string subject = txtSubject.Text.Trim();
+                        subject = subject.Replace("{{FullDate}}", fulldate);
+                        subject = subject.Replace("{{Nick}}", base.obj2str(data.Rows[i]["CallName"]));
+
+                        _Mail.Subject = subject;
+                        _Mail.Body = personal;
+                        _Mail.From = txtSender.Text;
+                        _Mail.Host = txtMailServer.Text;
+                        
+                        if (!isTester)
+                        {
+                            _Mail.MailOne = workMail;
+                        }
+                        else
+                        {
+                            _Mail.MailOne = txtTestAddr.Text.Trim();
+                        }
+
+                        _Mail.Port = Convert.ToInt16(txtMailPort.Text);
+                        _Mail.Send();
+                        txtLog[groupID] = employeeName + " sent.";
                     }
 
-                    _Mail.Port = Convert.ToInt16(txtMailPort.Text);
-                    _Mail.Send();
-
-                    txtLog[groupID] = employeeName + " sent.";
                     SetProgressBar(-1, -1, i + 1);
                 }
 
@@ -390,7 +416,20 @@ namespace Payroll_System
             result = MessageBox.Show("Send payslip to selected employees ?", "Send payslip", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                this.SendAll(false);
+                result = MessageBox.Show("Are you want to attach pay slip?", "Attach File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        MessageBox.Show(folderBrowserDialog.SelectedPath);
+                        this.SendMailOrExportPDF(false, false, folderBrowserDialog.SelectedPath, true);
+                    }
+                }
+                else
+                {
+                    this.SendMailOrExportPDF(false, false, string.Empty, false);
+                }
             }
         }
 
@@ -432,7 +471,7 @@ namespace Payroll_System
             result = MessageBox.Show("Send selected payslip to tester ?", "Send payslips to tester", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                this.SendAll(true);
+                this.SendMailOrExportPDF(true, false, string.Empty, false);
             }
         }
 
@@ -447,6 +486,14 @@ namespace Payroll_System
             load_DeptEmptoGrid();
         }
 
+        private void btnExportPDF_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(folderBrowserDialog.SelectedPath);
 
+                this.SendMailOrExportPDF(false, true, folderBrowserDialog.SelectedPath, false);
+            }
+        }
     }
 }

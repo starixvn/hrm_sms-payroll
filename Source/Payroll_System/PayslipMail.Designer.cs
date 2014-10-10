@@ -45,6 +45,7 @@
             this.btnSendDemoMail = new System.Windows.Forms.Button();
             this.btnSendDemo = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnExportPDF = new System.Windows.Forms.Button();
             this.textLog = new System.Windows.Forms.TextBox();
             this.empGrid = new System.Windows.Forms.DataGridView();
             this.ckGrpid = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -60,6 +61,7 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.txtTestAddr = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.empGrid)).BeginInit();
@@ -286,6 +288,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnExportPDF);
             this.groupBox3.Controls.Add(this.textLog);
             this.groupBox3.Controls.Add(this.empGrid);
             this.groupBox3.Controls.Add(this.label4);
@@ -302,6 +305,18 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Payslip Mail";
             // 
+            // btnExportPDF
+            // 
+            this.btnExportPDF.Image = global::Payroll_System.Properties.Resources.pdf24x24;
+            this.btnExportPDF.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExportPDF.Location = new System.Drawing.Point(755, 52);
+            this.btnExportPDF.Name = "btnExportPDF";
+            this.btnExportPDF.Size = new System.Drawing.Size(180, 35);
+            this.btnExportPDF.TabIndex = 47;
+            this.btnExportPDF.Text = "Export payslip of employees";
+            this.btnExportPDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
+            // 
             // textLog
             // 
             this.textLog.Location = new System.Drawing.Point(575, 93);
@@ -310,7 +325,7 @@
             this.textLog.Size = new System.Drawing.Size(360, 124);
             this.textLog.TabIndex = 48;
             // 
-            // EmpGrid
+            // empGrid
             // 
             this.empGrid.AllowUserToAddRows = false;
             this.empGrid.AllowUserToDeleteRows = false;
@@ -325,7 +340,7 @@
             this.gEmail});
             this.empGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.empGrid.Location = new System.Drawing.Point(18, 52);
-            this.empGrid.Name = "EmpGrid";
+            this.empGrid.Name = "empGrid";
             this.empGrid.RowHeadersVisible = false;
             this.empGrid.RowHeadersWidth = 25;
             this.empGrid.RowTemplate.Height = 24;
@@ -429,9 +444,10 @@
             this.btnSend.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnSend.Location = new System.Drawing.Point(575, 52);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(360, 35);
+            this.btnSend.Size = new System.Drawing.Size(175, 35);
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send payslip to employees";
+            this.btnSend.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSend.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtTestAddr
@@ -440,7 +456,7 @@
             this.txtTestAddr.Name = "txtTestAddr";
             this.txtTestAddr.Size = new System.Drawing.Size(366, 20);
             this.txtTestAddr.TabIndex = 5;
-            this.txtTestAddr.Text = "qui.nguyen@nexcel.vn";
+            this.txtTestAddr.Text = "quinn.vo@nexcel.vn";
             // 
             // label1
             // 
@@ -513,5 +529,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gGrpid;
         private System.Windows.Forms.DataGridViewTextBoxColumn gCallname;
         private System.Windows.Forms.DataGridViewTextBoxColumn gEmail;
+        private System.Windows.Forms.Button btnExportPDF;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
     }
 }

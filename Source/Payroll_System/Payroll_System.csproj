@@ -26,6 +26,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>http://localhost/Payroll_System/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -40,7 +41,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -368,6 +368,7 @@
     </Content>
     <Content Include="money bag.ico" />
     <Content Include="Resources\pdf24x24.png" />
+    <Content Include="Resources\Word.png" />
     <Content Include="_Dependencies\NReco.PdfGenerator.dll" />
     <None Include="Resources\unlock.png" />
     <None Include="Resources\multiple.png" />

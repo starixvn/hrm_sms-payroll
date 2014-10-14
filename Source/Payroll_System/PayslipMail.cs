@@ -13,6 +13,7 @@ namespace Payroll_System
         TSQL tSQL;
         string thisMonthy;
         string htmlFile;
+        string docFile;
         string TextAll = "======= All =======";
 
         public PayslipMail()
@@ -38,6 +39,8 @@ namespace Payroll_System
             txtTestAddr.Text = base.obj2str(profile.Rows[0]["testRecipient"]);
 
             htmlFile = base.RemoteDBAbsPath() + "\\HtmlTemplate\\PayslipMail.html";
+
+            docFile = base.RemoteDBAbsPath() + "\\HtmlTemplate\\Template.doc";
 
             SetProgressBar(0, 0, 0);
 
@@ -186,8 +189,9 @@ namespace Payroll_System
             }
         }
 
-        private void SendMailOrExportPDF(bool isTester, bool isExportPDF, string folderPath, bool isAttachFile)
+        private void SendMailOrExportPDF(bool isTester, int type, string folderPath, bool isAttachFile)
         {
+            // type: 1 send mail, 2: pdf, 3: word
             Mail _Mail;
             string doc;
             string personal;
@@ -203,14 +207,14 @@ namespace Payroll_System
             string bankList = string.Empty;
             string bankListItem = "<tr>" +
                               "<td bgcolor='#FFFFFF' class='intd' width='120'>{0}</td>" +
-                              "<td bgcolor='#CCCCFF' class='intd' width='180' align='right'>{1}</td>" +
+                              "<td bgcolor='#CCCCFF' class='intd' width='317' align='right'>{1}</td>" +
                               "<td bgcolor='#CCCCFF' class='intd' width='120' align='right'>{2}</td>" +
-                              "<td bgcolor='#FFFFFF' class='intd' width='180' align='right'>{3}</td>" +
+                              "<td bgcolor='#FFFFFF' class='intd' width='317' align='right'>{3}</td>" +
                               "</tr>";
 
             string exchangeItem = "<tr>" +
-                                  "<td bgcolor='#FFFFFF' class='header2' width='150'>{0}</td>" +
-                                  "<td bgcolor='#FFFFFF' class='header2' width='150' align='center'>{1}</td>" +
+                                  "<td bgcolor='#FFFFFF' class='header2' width='200'>{0}</td>" +
+                                  "<td bgcolor='#FFFFFF' class='header2' align='center'>{1}</td>" +
                                   "</tr>";
             DataTable CurrencyDT = tSQL.Report_CurrencyData_SelectAll(thisMonthy);
             string exchangeRate = string.Empty;
@@ -337,11 +341,23 @@ namespace Payroll_System
                     personal = personal.Replace("{{FullDateTime}}", fulldatetime);
 
                     var fileName = string.Empty;
-                    if (isExportPDF)
+                    if (type == 2)
                     {
                         var pdfBytes = (new NReco.PdfGenerator.HtmlToPdfConverter()).GeneratePdf(personal);
                         fileName = folderPath + "\\" + nickName + "_" + month + ".pdf";
                         File.WriteAllBytes(@fileName, pdfBytes);
+                        txtLog[groupID] = employeeName + " exported.";
+                    }
+                    else if(type == 3)
+                    {
+                        fileName = folderPath + "\\" + nickName + "_" + month + ".doc";
+
+                        FileStream fStream = File.Create(fileName);
+                        fStream.Close();
+                        StreamWriter sWriter = new StreamWriter(fileName);
+                        sWriter.Write(personal);
+                        sWriter.Close();
+
                         txtLog[groupID] = employeeName + " exported.";
                     }
                     else
@@ -388,7 +404,14 @@ namespace Payroll_System
                     SetProgressBar(-1, -1, i + 1);
                 }
 
-                MessageBox.Show("Sent.", "Send");
+                if (type == 1)
+                {
+                    MessageBox.Show("Sent.", "Send");
+                }
+                else
+                {
+                    MessageBox.Show("Exported in: " + folderPath, "Export");
+                }
             }
             catch (Exception ex)
             {
@@ -403,10 +426,6 @@ namespace Payroll_System
                 }
 
                 textLog.Text = cb.ToString();
-
-                // Clipboard.SetDataObject(cb.ToString(), true);
-                // System.Diagnostics.Process.Start("NOTEPAD.exe");
-                // SendKeys.Send("^v");
             }
         }
 
@@ -416,20 +435,7 @@ namespace Payroll_System
             result = MessageBox.Show("Send payslip to selected employees ?", "Send payslip", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                result = MessageBox.Show("Are you want to attach pay slip?", "Attach File", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        MessageBox.Show(folderBrowserDialog.SelectedPath);
-                        this.SendMailOrExportPDF(false, false, folderBrowserDialog.SelectedPath, true);
-                    }
-                }
-                else
-                {
-                    this.SendMailOrExportPDF(false, false, string.Empty, false);
-                }
+                this.SendMailOrExportPDF(false, 1, string.Empty, false);
             }
         }
 
@@ -471,7 +477,7 @@ namespace Payroll_System
             result = MessageBox.Show("Send selected payslip to tester ?", "Send payslips to tester", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                this.SendMailOrExportPDF(true, false, string.Empty, false);
+                this.SendMailOrExportPDF(true, 1, string.Empty, false);
             }
         }
 
@@ -490,9 +496,23 @@ namespace Payroll_System
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(folderBrowserDialog.SelectedPath);
+                this.SendMailOrExportPDF(false, 2, folderBrowserDialog.SelectedPath, false);
+            }
+        }
 
-                this.SendMailOrExportPDF(false, true, folderBrowserDialog.SelectedPath, false);
+        private void btnEportWord_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.SendMailOrExportPDF(false, 3, folderBrowserDialog.SelectedPath, false);
+            }
+        }
+
+        private void btnSendAndAttach_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.SendMailOrExportPDF(false, 1, folderBrowserDialog.SelectedPath, true);
             }
         }
     }

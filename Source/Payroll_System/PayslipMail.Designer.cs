@@ -45,6 +45,7 @@
             this.btnSendDemoMail = new System.Windows.Forms.Button();
             this.btnSendDemo = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnEportWord = new System.Windows.Forms.Button();
             this.btnExportPDF = new System.Windows.Forms.Button();
             this.textLog = new System.Windows.Forms.TextBox();
             this.empGrid = new System.Windows.Forms.DataGridView();
@@ -62,6 +63,7 @@
             this.txtTestAddr = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnSendAndAttach = new System.Windows.Forms.Button();
             this.groupBox6.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.empGrid)).BeginInit();
@@ -288,6 +290,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnSendAndAttach);
+            this.groupBox3.Controls.Add(this.btnEportWord);
             this.groupBox3.Controls.Add(this.btnExportPDF);
             this.groupBox3.Controls.Add(this.textLog);
             this.groupBox3.Controls.Add(this.empGrid);
@@ -305,15 +309,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Payslip Mail";
             // 
+            // btnEportWord
+            // 
+            this.btnEportWord.Image = global::Payroll_System.Properties.Resources.Word;
+            this.btnEportWord.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnEportWord.Location = new System.Drawing.Point(900, 52);
+            this.btnEportWord.Name = "btnEportWord";
+            this.btnEportWord.Size = new System.Drawing.Size(35, 35);
+            this.btnEportWord.TabIndex = 48;
+            this.btnEportWord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEportWord.Click += new System.EventHandler(this.btnEportWord_Click);
+            // 
             // btnExportPDF
             // 
             this.btnExportPDF.Image = global::Payroll_System.Properties.Resources.pdf24x24;
             this.btnExportPDF.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnExportPDF.Location = new System.Drawing.Point(755, 52);
+            this.btnExportPDF.Location = new System.Drawing.Point(859, 52);
             this.btnExportPDF.Name = "btnExportPDF";
-            this.btnExportPDF.Size = new System.Drawing.Size(180, 35);
+            this.btnExportPDF.Size = new System.Drawing.Size(35, 35);
             this.btnExportPDF.TabIndex = 47;
-            this.btnExportPDF.Text = "Export payslip of employees";
             this.btnExportPDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
             // 
@@ -420,7 +434,7 @@
             this.labCount.BackColor = System.Drawing.Color.Transparent;
             this.labCount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labCount.ForeColor = System.Drawing.Color.Black;
-            this.labCount.Location = new System.Drawing.Point(877, 24);
+            this.labCount.Location = new System.Drawing.Point(859, 28);
             this.labCount.Name = "labCount";
             this.labCount.Size = new System.Drawing.Size(58, 16);
             this.labCount.TabIndex = 4;
@@ -433,7 +447,7 @@
             this.progressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.progressBar1.Location = new System.Drawing.Point(575, 21);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(296, 25);
+            this.progressBar1.Size = new System.Drawing.Size(278, 25);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 3;
             this.progressBar1.Value = 50;
@@ -444,9 +458,9 @@
             this.btnSend.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnSend.Location = new System.Drawing.Point(575, 52);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(175, 35);
+            this.btnSend.Size = new System.Drawing.Size(115, 35);
             this.btnSend.TabIndex = 2;
-            this.btnSend.Text = "Send payslip to employees";
+            this.btnSend.Text = "Send payslip";
             this.btnSend.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSend.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -466,6 +480,18 @@
             this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Tester email";
+            // 
+            // btnSendAndAttach
+            // 
+            this.btnSendAndAttach.Image = global::Payroll_System.Properties.Resources.send;
+            this.btnSendAndAttach.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnSendAndAttach.Location = new System.Drawing.Point(696, 52);
+            this.btnSendAndAttach.Name = "btnSendAndAttach";
+            this.btnSendAndAttach.Size = new System.Drawing.Size(157, 35);
+            this.btnSendAndAttach.TabIndex = 49;
+            this.btnSendAndAttach.Text = "Send payslip && attach";
+            this.btnSendAndAttach.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSendAndAttach.Click += new System.EventHandler(this.btnSendAndAttach_Click);
             // 
             // PayslipMail
             // 
@@ -531,5 +557,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gEmail;
         private System.Windows.Forms.Button btnExportPDF;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.Button btnEportWord;
+        private System.Windows.Forms.Button btnSendAndAttach;
     }
 }

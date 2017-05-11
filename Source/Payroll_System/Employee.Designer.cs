@@ -26,7 +26,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ColumnHeader InService;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Employee));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialogExport = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialogExport = new System.Windows.Forms.SaveFileDialog();
@@ -497,9 +497,9 @@
             // 
             this.txtGroupID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.txtGroupID.Location = new System.Drawing.Point(81, 9);
-            this.txtGroupID.MaxLength = 6;
+            this.txtGroupID.MaxLength = 10;
             this.txtGroupID.Name = "txtGroupID";
-            this.txtGroupID.Size = new System.Drawing.Size(60, 20);
+            this.txtGroupID.Size = new System.Drawing.Size(90, 20);
             this.txtGroupID.TabIndex = 0;
             // 
             // txtJobTitle
@@ -994,8 +994,8 @@
             // 
             // ACCury
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            this.ACCury.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            this.ACCury.DefaultCellStyle = dataGridViewCellStyle1;
             this.ACCury.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.ACCury.DisplayStyleForCurrentCellOnly = true;
             this.ACCury.FlatStyle = System.Windows.Forms.FlatStyle.System;

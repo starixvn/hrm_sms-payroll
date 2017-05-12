@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CS\ListViewItemComparer.cs" />
     <Compile Include="CS\StorageHelper.cs" />
     <Compile Include="InputBox.cs" />
     <Compile Include="KeyAmount.cs">

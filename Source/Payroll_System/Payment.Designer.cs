@@ -261,7 +261,6 @@
             this.xxIncre_Amount});
             this.empListView.FullRowSelect = true;
             this.empListView.GridLines = true;
-            this.empListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.empListView.HideSelection = false;
             this.empListView.LargeImageList = this.imageList;
             this.empListView.Location = new System.Drawing.Point(9, 39);
@@ -274,6 +273,7 @@
             this.empListView.TabIndex = 2;
             this.empListView.UseCompatibleStateImageBehavior = false;
             this.empListView.View = System.Windows.Forms.View.Details;
+            this.empListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.empListView_ColumnClick);
             this.empListView.Click += new System.EventHandler(this.EmpListView_Click);
             this.empListView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EmpListView_KeyPress);
             this.empListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.EmpListView_MouseDoubleClick);

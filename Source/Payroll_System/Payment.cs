@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 namespace Payroll_System
 {
+    using CS;
+
     public partial class Payment : First
     {
         int X = 190;
@@ -39,6 +41,8 @@ namespace Payroll_System
         DataTable PayoutRelation;
 
         bool ExistedError = false;
+
+        private int sortedColumnId = -1;
 
         enum Step
         { 
@@ -1523,6 +1527,22 @@ namespace Payroll_System
                         * varianceBase);
                 row.Cells[i].Value = variance;
             }
+        }
+
+        private void empListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column != sortedColumnId)
+            {
+                sortedColumnId = e.Column;
+                empListView.Sorting = SortOrder.Ascending;
+            }
+            else
+            {
+                empListView.Sorting = empListView.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+            }
+
+            empListView.Sort();
+            empListView.ListViewItemSorter = new ListViewItemComparer(e.Column, empListView.Sorting);
         }
     }
 }
